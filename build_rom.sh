@@ -1,7 +1,7 @@
 mkdir ros
 cd ros
 
-    repo init -u https://github.com/RevengeOS/android_manifest -b r10.0
+    repo init --depth=1 -u https://github.com/RevengeOS/android_manifest -b r10.0
     SYNC_START=$(date +"%s")
             cd .repo/manifests
             git reset --hard
@@ -11,10 +11,10 @@ cd ros
             cd ../..
         rm -rf .repo/local_manifest.xml
         rm -rf private_manifest
-        git clone https://github.com/RevengeOS/private_manifest.git private_manifest
-        cp private_manifest/private.xml .repo/local_manifest.xml
+        git clone git@github.com:RevengeOS/private_manifest.git
+        cp private_manifest/private.xml .repo/local_manifests/
         rm -rf private_manifest
-        repo sync -c -j$(nproc) --force-sync --no-clone-bundle --no-tags --depth=1
+        repo sync -c -j$(nproc) --force-sync --no-clone-bundle --no-tags
 
     SYNC_END=$(date +"%s")
     SYNC_DIFF=$((SYNC_END - SYNC_START))

@@ -2,6 +2,8 @@ cd ros
 set -e
     a=()
     devices_dir=$(pwd)/vendor/revengeos/official_devices
+	rm -rf changelog.txt
+	curl -k https://raw.githubusercontent.com/Chityanj/jenkins/master/Changelog/$DEVICE/changelog.txt -o changelog.txt
     if [ ! -f "$(pwd)/changelog.txt" ]; then
         echo "Create changelog.txt folder in build directory"
         echo "Aborting..."
